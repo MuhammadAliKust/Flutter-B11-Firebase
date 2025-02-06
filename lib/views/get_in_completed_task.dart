@@ -32,6 +32,7 @@ class GetInCompletedTaskView extends StatelessWidget {
                   leading: Icon(Icons.task),
                   title: Text(taskList[i].title.toString()),
                   subtitle: Text(taskList[i].description.toString()),
+
                 );
               });
         },
