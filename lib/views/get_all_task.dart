@@ -4,6 +4,7 @@ import 'package:flutter_b11_firebase/models/task.dart';
 import 'package:flutter_b11_firebase/services/task.dart';
 import 'package:flutter_b11_firebase/views/create_task.dart';
 import 'package:flutter_b11_firebase/views/get_completed_task.dart';
+import 'package:flutter_b11_firebase/views/update_task.dart';
 import 'package:provider/provider.dart';
 
 import 'get_in_completed_task.dart';
@@ -62,7 +63,8 @@ class GetAllTaskView extends StatelessWidget {
                           onChanged: (val) async {
                             try {
                               await TaskServices()
-                                  .markTaskAsComplete(taskList[i].docId.toString())
+                                  .markTaskAsComplete(
+                                      taskList[i].docId.toString())
                                   .then((val) {
                                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                     content: Text(
@@ -91,7 +93,19 @@ class GetAllTaskView extends StatelessWidget {
                           icon: Icon(
                             Icons.delete,
                             color: Colors.red,
-                          ))
+                          )),
+                      IconButton(
+                          onPressed: () async {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        UpdateTaskView(model: taskList[i])));
+                          },
+                          icon: Icon(
+                            Icons.edit,
+                            color: Colors.blue,
+                          )),
                     ],
                   ),
                 );
